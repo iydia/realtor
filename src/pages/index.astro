@@ -138,11 +138,11 @@ const pageTitle = `${config.firstName} ${config.lastName} — ${config.officeNam
       </div>
 
       {
-        (config.industryLicenseText || config.industrySinceYear) && (
+        (config.industryLicenseText || config.industrySinceText) && (
           <div class="footer-bar">
             {config.industryLicenseText && <span>{config.industryLicenseText}</span>}
-            {config.industrySinceYear && (
-              <span>Serving {config.cityProvinceCountry} since {config.industrySinceYear}</span>
+            {config.industrySinceText && (
+              <span>Serving {config.cityProvinceCountry} since {config.industrySinceText}</span>
             )}
           </div>
         )

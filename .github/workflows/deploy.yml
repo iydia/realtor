@@ -46,7 +46,7 @@ jobs:
           OFFICE_ADDRESS: ${{ secrets.OFFICE_ADDRESS }}
           OFFICE_WEBSITE: ${{ secrets.OFFICE_WEBSITE }}
           PATH_OFFICE_LOGO: ${{ secrets.PATH_OFFICE_LOGO }}
-          INDUSTRY_SINCE_YEAR: ${{ secrets.INDUSTRY_SINCE_YEAR }}
+          INDUSTRY_SINCE_TEXT: ${{ secrets.INDUSTRY_SINCE_TEXT }}
           INDUSTRY_LICENSE_TEXT: ${{ secrets.INDUSTRY_LICENSE_TEXT }}
           INDUSTRY_AWARDS_TEXT: ${{ secrets.INDUSTRY_AWARDS_TEXT }}
           INDUSTRY_AWARDS_TEXT_ALT: ${{ secrets.INDUSTRY_AWARDS_TEXT_ALT }}
