@@ -15,11 +15,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -79,8 +78,41 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages-${{ github.run_attempt }}
           path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Wait for uploaded artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          ARTIFACT_NAME: github-pages-${{ github.run_attempt }}
+        run: |
+          for attempt in $(seq 1 12); do
+            count=$(gh api "repos/$GH_REPO/actions/runs/$RUN_ID/artifacts" \
+              --jq "[.artifacts[] | select(.name == \"$ARTIFACT_NAME\" and .expired == false)] | length")
+            if [ "$count" = "1" ]; then
+              exit 0
+            fi
+            echo "Waiting for uploaded Pages artifact ($attempt/12)..."
+            sleep 5
+          done
+          echo "::error::Uploaded Pages artifact did not become available."
+          exit 1
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
