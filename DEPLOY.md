@@ -19,7 +19,7 @@ Any secret you don't set falls back to the same fictional default used locally.
 Generate base64-encoded:
 
 ```bash
-base64 -i assets/headshot.jpg | pbcopy
+base64 -i {{PATH_HEADSHOT}} | pbcopy
 ```
 
 Paste the result as the secret value. If a pair is left unset, that image is simply
