@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactRow from '../components/ContactRow.astro';
 import { config } from '../config.mjs';
+import headshot from '../../assets/headshot.jpg';
+import officeLogo from '../../assets/office-logo.png';
 import { formatPhoneNumber } from '../utils/phone.mjs';
 
 const telHref = (value?: string) => (value ? `tel:${value.replace(/[^+\d]/g, '')}` : undefined);
@@ -20,22 +22,22 @@ const pageTitle = `${config.firstName} ${config.lastName} — ${config.officeNam
       </div>
 
       <div class="card-body">
-        {
-          config.officeLogoSrc && (
-            <img class="brand-logo" src={config.officeLogoSrc} alt={config.officeName} />
-          )
-        }
+        <img
+          class="brand-logo"
+          src={officeLogo.src}
+          width={officeLogo.width}
+          height={officeLogo.height}
+          alt={config.officeName}
+        />
 
         <div class="identity-row">
-          {
-            config.headshotSrc && (
-              <img
-                class="headshot"
-                src={config.headshotSrc}
-                alt={`${config.firstName} ${config.lastName}`}
-              />
-            )
-          }
+          <img
+            class="headshot"
+            src={headshot.src}
+            width={headshot.width}
+            height={headshot.height}
+            alt={`${config.firstName} ${config.lastName}`}
+          />
           <div class="identity">
             <div class="identity-names">
               <h1 class="identity-name">{config.firstName} {config.lastName}</h1>

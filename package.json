@@ -4,9 +4,7 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
-    "predev": "node scripts/prepare-assets.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/prepare-assets.mjs",
     "build": "astro build",
     "preview": "astro preview"
   },

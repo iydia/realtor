@@ -40,12 +40,10 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           PHONE: ${{ secrets.PHONE }}
           CITY_PROVINCE_COUNTRY: ${{ secrets.CITY_PROVINCE_COUNTRY }}
-          PATH_HEADSHOT: ${{ secrets.PATH_HEADSHOT }}
           OFFICE_NAME: ${{ secrets.OFFICE_NAME }}
           OFFICE_PHONE: ${{ secrets.OFFICE_PHONE }}
           OFFICE_ADDRESS: ${{ secrets.OFFICE_ADDRESS }}
           OFFICE_WEBSITE: ${{ secrets.OFFICE_WEBSITE }}
-          PATH_OFFICE_LOGO: ${{ secrets.PATH_OFFICE_LOGO }}
           INDUSTRY_SINCE_TEXT: ${{ secrets.INDUSTRY_SINCE_TEXT }}
           INDUSTRY_LICENSE_TEXT: ${{ secrets.INDUSTRY_LICENSE_TEXT }}
           INDUSTRY_AWARDS_TEXT: ${{ secrets.INDUSTRY_AWARDS_TEXT }}
