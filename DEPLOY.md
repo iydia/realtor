@@ -9,8 +9,17 @@ npm run preview
 
 ## GHA
 
-**Configuration** — one secret per `.env.example` field.
+**Configuration** — text fields use matching secrets from `.env.example`.
+The `ENABLE_WECHAT` feature flag uses an Actions variable as described below.
 Any secret you don't set falls back to the same fictional default used locally.
+
+**WeChat feature flag** — disabled by default. The QR panel is hidden and
+contact details use the full width. Leave `ENABLE_WECHAT` blank or `false` locally.
+After replacing `assets/qrcode.png` with the correct code, set `ENABLE_WECHAT=true`
+in `.env` for local development. For production, set the GitHub Actions repository
+variable `ENABLE_WECHAT` to `true` under Settings → Secrets and variables → Actions
+→ Variables, then start a new workflow run. Set it to `false` (or remove the
+variable) and rebuild to disable it again.
 
 **Custom domain** — if you attach a domain later:
 1. Set `site` in `astro.config.mjs` to the domain's HTTPS URL and set `base` to `/`.

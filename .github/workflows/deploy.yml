@@ -34,6 +34,7 @@ jobs:
 
       - name: Build
         env:
+          ENABLE_WECHAT: ${{ vars.ENABLE_WECHAT || 'false' }}
           FIRST_NAME: ${{ secrets.FIRST_NAME }}
           LAST_NAME: ${{ secrets.LAST_NAME }}
           ALT_NAME: ${{ secrets.ALT_NAME }}

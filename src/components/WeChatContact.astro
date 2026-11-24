@@ -1,0 +1,179 @@
+---
+import wechatQr from '../../assets/qrcode.png';
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<details class="wechat-contact" data-wechat-qr>
+  <summary>
+    <span class="wechat-title">WeChat <span lang="zh-Hans">微信</span></span>
+    <span class="wechat-action hover-hint">Hover to reveal code</span>
+    <span class="wechat-action when-closed">Show QR code</span>
+    <span class="wechat-action when-open">Hide QR code</span>
+  </summary>
+  <div class="wechat-content">
+    <img
+      class="wechat-qr"
+      src={wechatQr.src}
+      width={wechatQr.width}
+      height={wechatQr.height}
+      alt={`WeChat QR code to add ${name}`}
+      decoding="async"
+    />
+    <p class="wechat-help mobile-help">Save or screenshot this code, then choose Scan → Album in WeChat.</p>
+    <a class="wechat-save" href={wechatQr.src} download="wechat-qr.png">Save QR code</a>
+  </div>
+</details>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('[data-wechat-qr]').forEach((panel) => {
+    const hoverPointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    panel.addEventListener('pointerenter', (event) => {
+      if (event.pointerType === 'mouse' && hoverPointer.matches) {
+        panel.open = true;
+      }
+    });
+
+    panel.addEventListener('pointerleave', (event) => {
+      if (event.pointerType === 'mouse' && hoverPointer.matches) {
+        panel.open = false;
+      }
+    });
+
+    panel.querySelector('summary')?.addEventListener('click', (event) => {
+      const mouseClick = event.detail > 0 && (!('pointerType' in event) || event.pointerType === 'mouse');
+      if (mouseClick && hoverPointer.matches) {
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+
+<style>
+  .wechat-contact {
+    min-width: 0;
+    border: 1px solid var(--color-rule);
+    border-radius: 12px;
+    background: var(--color-footer-bg);
+    overflow: hidden;
+  }
+
+  summary {
+    height: 56px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2px;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:focus-visible {
+    outline-offset: -3px;
+  }
+
+  .wechat-title {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .wechat-action {
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--color-muted);
+  }
+
+  .when-open,
+  .hover-hint,
+  .mobile-help {
+    display: none;
+  }
+
+  details[open] .when-open {
+    display: inline;
+  }
+
+  details[open] .when-closed {
+    display: none;
+  }
+
+  .wechat-content {
+    padding: 0 8px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .wechat-qr {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    object-fit: contain;
+    background: #ffffff;
+  }
+
+  .wechat-help {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+
+  .wechat-save {
+    min-height: 28px;
+    padding: 2px 0;
+    line-height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 480px) {
+    .mobile-help {
+      display: block;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    summary {
+      cursor: default;
+    }
+
+    .when-closed,
+    details[open] .when-open {
+      display: none;
+    }
+
+    .hover-hint {
+      display: inline;
+    }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .wechat-save {
+      min-height: 44px;
+    }
+
+    .mobile-help {
+      display: block;
+    }
+  }
+</style>

@@ -2,6 +2,7 @@ import 'dotenv/config';
 const env = (name, fallback = '') => process.env[name] || fallback;
 
 export const config = {
+  enableWeChat: env('ENABLE_WECHAT').trim().toLowerCase() === 'true',
   firstName: env('FIRST_NAME', 'First'),
   lastName: env('LAST_NAME', 'Last'),
   altName: env('ALT_NAME'),
