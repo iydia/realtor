@@ -22,21 +22,19 @@ const manifest = readManifest();
 const env = (name, fallback = '') => process.env[name] || fallback;
 
 export const config = {
-  firstName: env('FIRST_NAME', 'Jordan'),
-  lastName: env('LAST_NAME', 'Avery'),
+  firstName: env('FIRST_NAME', 'First'),
+  lastName: env('LAST_NAME', 'Last'),
   altName: env('ALT_NAME'),
-  email: env('EMAIL', 'jordan.avery@example.com'),
+  email: env('EMAIL', 'someone@example.com'),
   phone: env('PHONE', '+1 416 555 0134'),
-  cityProvinceCountry: env('CITY_PROVINCE_COUNTRY', 'Toronto, Ontario, Canada'),
+  cityProvinceCountry: env('CITY_PROVINCE_COUNTRY', 'City, Province, Country'),
   headshotSrc: manifest.headshot,
-
-  officeName: env('OFFICE_NAME', 'Lakeview Realty Group, Brokerage'),
+  officeName: env('OFFICE_NAME', 'Office Name'),
   officePhone: env('OFFICE_PHONE', '+1 416 555 0100'),
-  officeAddress: env('OFFICE_ADDRESS', '100 Example Street, Suite 200, Toronto, ON M5V 2T6'),
+  officeAddress: env('OFFICE_ADDRESS', '100 Example Street, Suite 200, City, Province, Country'),
   officeWebsite: env('OFFICE_WEBSITE', 'https://example.com'),
   officeLogoSrc: manifest.officeLogo,
-
   industrySinceYear: env('INDUSTRY_SINCE_YEAR', '2015'),
   industryLicenseText: env('INDUSTRY_LICENSE_TEXT', 'Licensed real estate professional'),
-  industryAwardsText: env('INDUSTRY_AWARDS_TEXT'),
+  industryAwardsText: env('INDUSTRY_AWARDS_TEXT', 'Awards Text'),
 };
