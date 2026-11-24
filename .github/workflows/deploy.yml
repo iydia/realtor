@@ -69,10 +69,12 @@ jobs:
         run: npm run build
 
       - name: Add custom domain
-        if: ${{ secrets.CNAME != '' }}
         env:
           CNAME: ${{ secrets.CNAME }}
-        run: echo "$CNAME" > dist/CNAME
+        run: |
+          if [ -n "$CNAME" ]; then
+            printf '%s\n' "$CNAME" > dist/CNAME
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
