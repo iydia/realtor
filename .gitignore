@@ -1,3 +1,5 @@
+.env
+
 # Logs
 logs
 *.log
@@ -155,3 +157,7 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# Local
+claude-design-project/
+assets/
