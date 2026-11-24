@@ -115,6 +115,14 @@ a:hover {
   min-width: 0;
 }
 
+.identity-names {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  min-width: 0;
+}
+
 .identity-name {
   margin: 0;
   font-size: 34px;
@@ -127,10 +135,11 @@ a:hover {
 .identity-alt {
   margin: 0;
   font-family: "Noto Serif SC", serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
+  line-height: 1.5;
   color: var(--color-alt-name);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   overflow-wrap: anywhere;
 }
 
@@ -228,6 +237,20 @@ a.contact-row:focus-visible {
   flex-wrap: wrap;
 }
 
+.industry-awards {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.industry-awards-alt {
+  font-family: "Noto Serif SC", serif;
+}
+
 @media (max-width: 480px) {
   .page-bg {
     padding: 24px 12px;
@@ -242,7 +265,7 @@ a.contact-row:focus-visible {
   }
 
   .identity-alt {
-    font-size: 19px;
+    font-size: 18px;
   }
 
   .footer-bar {
