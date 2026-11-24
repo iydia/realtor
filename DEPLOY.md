@@ -12,11 +12,10 @@ npm run preview
 **Configuration** — one secret per `.env.example` field.
 Any secret you don't set falls back to the same fictional default used locally.
 
-**Custom domain** — this project is configured to deploy at the root (`base: '/'`)
-for use with a custom domain, not a `/<repo>/` subpath. To attach one:
-1. Add a `CNAME` repository secret containing the domain (e.g. `example.com`).
-2. Point the domain's DNS at GitHub Pages.
-3. In the repo's Settings → Pages, set the custom domain to match.
+**Custom domain** — if you attach a domain later:
+1. Set `site` in `astro.config.mjs` to the domain's HTTPS URL and set `base` to `/`.
+2. Add a `CNAME` repository secret containing the domain.
+3. Point the domain's DNS at GitHub Pages.
+4. In Settings → Pages, set the custom domain to match.
 
-The workflow writes the `CNAME` secret into the build output automatically; it is
-never committed to the repository.
+The workflow writes the `CNAME` secret into the build output automatically.
