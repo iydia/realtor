@@ -1,0 +1,17 @@
+{
+  "name": "realtor-business-card",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "predev": "node scripts/prepare-assets.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/prepare-assets.mjs",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "dotenv": "^16.4.5"
+  }
+}
