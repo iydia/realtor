@@ -1,0 +1,84 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Restore configured images
+        env:
+          PATH_HEADSHOT: ${{ secrets.PATH_HEADSHOT }}
+          PATH_OFFICE_LOGO: ${{ secrets.PATH_OFFICE_LOGO }}
+          HEADSHOT_IMAGE_B64: ${{ secrets.HEADSHOT_IMAGE_B64 }}
+          OFFICE_LOGO_IMAGE_B64: ${{ secrets.OFFICE_LOGO_IMAGE_B64 }}
+        run: |
+          if [ -n "$PATH_HEADSHOT" ] && [ -n "$HEADSHOT_IMAGE_B64" ]; then
+            mkdir -p "$(dirname "$PATH_HEADSHOT")"
+            echo "$HEADSHOT_IMAGE_B64" | base64 -d > "$PATH_HEADSHOT"
+          fi
+          if [ -n "$PATH_OFFICE_LOGO" ] && [ -n "$OFFICE_LOGO_IMAGE_B64" ]; then
+            mkdir -p "$(dirname "$PATH_OFFICE_LOGO")"
+            echo "$OFFICE_LOGO_IMAGE_B64" | base64 -d > "$PATH_OFFICE_LOGO"
+          fi
+
+      - name: Build
+        env:
+          FIRST_NAME: ${{ secrets.FIRST_NAME }}
+          LAST_NAME: ${{ secrets.LAST_NAME }}
+          ALT_NAME: ${{ secrets.ALT_NAME }}
+          EMAIL: ${{ secrets.EMAIL }}
+          PHONE: ${{ secrets.PHONE }}
+          CITY_PROVINCE_COUNTRY: ${{ secrets.CITY_PROVINCE_COUNTRY }}
+          PATH_HEADSHOT: ${{ secrets.PATH_HEADSHOT }}
+          OFFICE_NAME: ${{ secrets.OFFICE_NAME }}
+          OFFICE_PHONE: ${{ secrets.OFFICE_PHONE }}
+          OFFICE_ADDRESS: ${{ secrets.OFFICE_ADDRESS }}
+          OFFICE_WEBSITE: ${{ secrets.OFFICE_WEBSITE }}
+          PATH_OFFICE_LOGO: ${{ secrets.PATH_OFFICE_LOGO }}
+          INDUSTRY_SINCE_YEAR: ${{ secrets.INDUSTRY_SINCE_YEAR }}
+          INDUSTRY_LICENSE_TEXT: ${{ secrets.INDUSTRY_LICENSE_TEXT }}
+          INDUSTRY_AWARDS_TEXT: ${{ secrets.INDUSTRY_AWARDS_TEXT }}
+        run: npm run build
+
+      - name: Add custom domain
+        if: ${{ secrets.CNAME != '' }}
+        env:
+          CNAME: ${{ secrets.CNAME }}
+        run: echo "$CNAME" > dist/CNAME
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
