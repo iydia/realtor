@@ -131,6 +131,7 @@ const pageTitle = `${config.firstName} ${config.lastName} — ${config.officeNam
                 <span class="office-link">{config.officeName}</span>
               )}
               
+              {config.officeAddress && <a href={mapHref(config.officeAddress)}>{config.officeAddress}</a>}
               {config.officePhone && <a href={telHref(config.officePhone)}>{formatPhoneNumber(config.officePhone)}</a>}
             </section>
           )
@@ -142,7 +143,7 @@ const pageTitle = `${config.firstName} ${config.lastName} — ${config.officeNam
           <div class="footer-bar">
             {config.industryLicenseText && <span>{config.industryLicenseText}</span>}
             {config.industrySinceText && (
-              <span>Serving {config.cityProvinceCountry} since {config.industrySinceText}</span>
+              <span>{config.industrySinceText}</span>
             )}
           </div>
         )
