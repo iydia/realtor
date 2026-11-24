@@ -1,0 +1,259 @@
+:root {
+  --color-primary: #2b3990;
+  --color-primary-hover: #1c2770;
+  --color-accent: #e2231a;
+  --color-bg: #eef0f5;
+  --color-text: #1a1f36;
+  --color-muted: #5a6178;
+  --color-alt-name: #3a4160;
+  --color-rule: #e4e7ef;
+  --color-row-hover: #f3f5fa;
+  --color-icon-bg: #eaedf7;
+  --color-footer-bg: #f4f6fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.page-bg {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  background-image: linear-gradient(rgba(43, 57, 144, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43, 57, 144, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  padding: 48px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter, "Noto Sans SC", system-ui, sans-serif;
+  color: var(--color-text);
+}
+
+.card {
+  width: 100%;
+  min-width: 0;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(26, 31, 54, 0.08), 0 24px 60px rgba(26, 31, 54, 0.14);
+  overflow: hidden;
+}
+
+.accent-bar {
+  display: flex;
+  height: 6px;
+}
+
+.accent-bar-primary {
+  flex: 3;
+  background: var(--color-primary);
+}
+
+.accent-bar-secondary {
+  flex: 1;
+  background: var(--color-accent);
+}
+
+.card-body {
+  padding: 36px 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+
+.identity-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+}
+
+.headshot {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.identity-name {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.identity-alt {
+  margin: 0;
+  font-family: "Noto Serif SC", serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-alt-name);
+  letter-spacing: 0.06em;
+  overflow-wrap: anywhere;
+}
+
+.identity-title {
+  margin: 6px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0 -12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-row {
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+a.contact-row:hover,
+a.contact-row:focus-visible {
+  background: var(--color-row-hover);
+  text-decoration: none;
+}
+
+.icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-icon-bg);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.office-section {
+  border-top: 1px solid var(--color-rule);
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  min-width: 0;
+}
+
+.office-heading {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.office-link {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.office-section a {
+  overflow-wrap: anywhere;
+}
+
+.footer-bar {
+  padding: 14px 40px;
+  background: var(--color-footer-bg);
+  font-size: 12px;
+  color: var(--color-muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .page-bg {
+    padding: 24px 12px;
+  }
+
+  .card-body {
+    padding: 28px 20px 24px;
+  }
+
+  .identity-name {
+    font-size: 26px;
+  }
+
+  .identity-alt {
+    font-size: 19px;
+  }
+
+  .footer-bar {
+    padding: 14px 20px;
+  }
+
+  .contact-list {
+    margin: 0 -8px;
+  }
+
+  .contact-row {
+    padding: 0 8px;
+  }
+}
