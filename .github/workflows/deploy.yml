@@ -65,6 +65,7 @@ jobs:
           INDUSTRY_SINCE_YEAR: ${{ secrets.INDUSTRY_SINCE_YEAR }}
           INDUSTRY_LICENSE_TEXT: ${{ secrets.INDUSTRY_LICENSE_TEXT }}
           INDUSTRY_AWARDS_TEXT: ${{ secrets.INDUSTRY_AWARDS_TEXT }}
+          INDUSTRY_AWARDS_TEXT_ALT: ${{ secrets.INDUSTRY_AWARDS_TEXT_ALT }}
         run: npm run build
 
       - name: Add custom domain
