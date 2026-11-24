@@ -32,22 +32,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Restore configured images
-        env:
-          PATH_HEADSHOT: ${{ secrets.PATH_HEADSHOT }}
-          PATH_OFFICE_LOGO: ${{ secrets.PATH_OFFICE_LOGO }}
-          HEADSHOT_IMAGE_B64: ${{ secrets.HEADSHOT_IMAGE_B64 }}
-          OFFICE_LOGO_IMAGE_B64: ${{ secrets.OFFICE_LOGO_IMAGE_B64 }}
-        run: |
-          if [ -n "$PATH_HEADSHOT" ] && [ -n "$HEADSHOT_IMAGE_B64" ]; then
-            mkdir -p "$(dirname "$PATH_HEADSHOT")"
-            echo "$HEADSHOT_IMAGE_B64" | base64 -d > "$PATH_HEADSHOT"
-          fi
-          if [ -n "$PATH_OFFICE_LOGO" ] && [ -n "$OFFICE_LOGO_IMAGE_B64" ]; then
-            mkdir -p "$(dirname "$PATH_OFFICE_LOGO")"
-            echo "$OFFICE_LOGO_IMAGE_B64" | base64 -d > "$PATH_OFFICE_LOGO"
-          fi
-
       - name: Build
         env:
           FIRST_NAME: ${{ secrets.FIRST_NAME }}

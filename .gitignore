@@ -161,7 +161,6 @@ vite.config.ts.timestamp-*
 # Local
 .claude/
 claude-design-project/
-assets/
 
 # Generated at build/dev time from PATH_* env values
 public/generated/
