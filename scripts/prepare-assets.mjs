@@ -7,9 +7,8 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 const publicGeneratedDir = path.join(repoRoot, 'public', 'generated');
 const manifestPath = path.join(repoRoot, 'src', 'generated', 'assets-manifest.json');
 
-function resolveAsset(envVar, destBaseName) {
-  const value = process.env[envVar];
-  if (!value) return null;
+function resolveAsset(envVar, destBaseName, defaultPath) {
+  const value = process.env[envVar]?.trim() || defaultPath;
 
   const srcPath = path.resolve(repoRoot, value);
   if (!fs.existsSync(srcPath) || !fs.statSync(srcPath).isFile()) return null;
@@ -21,8 +20,8 @@ function resolveAsset(envVar, destBaseName) {
 }
 
 const manifest = {
-  headshot: resolveAsset('PATH_HEADSHOT', 'headshot'),
-  officeLogo: resolveAsset('PATH_OFFICE_LOGO', 'office-logo'),
+  headshot: resolveAsset('PATH_HEADSHOT', 'headshot', 'assets/headshot.jpg'),
+  officeLogo: resolveAsset('PATH_OFFICE_LOGO', 'office-logo', 'assets/office-logo.png'),
 };
 
 fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
