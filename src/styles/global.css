@@ -245,29 +245,86 @@ a.contact-row:focus-visible {
 }
 
 .industry-awards {
-  padding: 16px 18px;
-  border: 1px solid var(--color-rule);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 17px 19px;
   border-radius: 12px;
-  background: var(--color-footer-bg);
+  background: var(--color-rule);
   display: flex;
   flex-direction: column;
   gap: 6px;
   min-width: 0;
+  font-family: Inter, system-ui, sans-serif;
   font-size: 14px;
   line-height: 1.6;
+  font-style: italic;
   overflow-wrap: anywhere;
 }
 
-.industry-awards-primary {
+/* Two opposing highlights share one rotating layer; only the 1px rim is visible. */
+.industry-awards::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  width: 200%;
+  aspect-ratio: 1;
+  background: conic-gradient(
+    transparent 0deg 90deg,
+    var(--color-rule) 105deg,
+    #8e9dbf 137deg,
+    #ffffff 149deg,
+    transparent 162deg 270deg,
+    var(--color-rule) 285deg,
+    #8e9dbf 317deg,
+    #ffffff 329deg,
+    transparent 342deg 360deg
+  );
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0turn);
+  animation: awards-border-orbit 8s linear infinite;
+}
+
+.industry-awards::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  inset: 1px;
+  border-radius: 11px;
+  background: var(--color-footer-bg);
+}
+
+.industry-awards > p {
+  position: relative;
+  z-index: 2;
   margin: 0;
+}
+
+.industry-awards-primary {
   font-weight: 600;
   color: var(--color-primary);
 }
 
 .industry-awards-alt {
-  margin: 0;
-  font-family: "Noto Serif SC", serif;
+  font-family: "Noto Serif SC", "Songti SC", serif;
   color: var(--color-alt-name);
+}
+
+@keyframes awards-border-orbit {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .industry-awards::before {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 @media (max-width: 480px) {
