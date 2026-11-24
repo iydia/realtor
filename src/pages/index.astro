@@ -46,13 +46,12 @@ const pageTitle = `${config.firstName} ${config.lastName} — ${config.officeNam
 
         {
           (config.industryAwardsText || config.industryAwardsTextAlt) && (
-            <section class="industry-awards" aria-labelledby="awards-heading">
-              <h2 id="awards-heading" class="awards-heading">Awards &amp; recognition</h2>
+            <div class="industry-awards">
               {config.industryAwardsText && <p class="industry-awards-primary">{config.industryAwardsText}</p>}
               {config.industryAwardsTextAlt && (
                 <p class="industry-awards-alt" lang="zh-Hans">{config.industryAwardsTextAlt}</p>
               )}
-            </section>
+            </div>
           )
         }
 
