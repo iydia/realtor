@@ -1,0 +1,29 @@
+---
+interface Props {
+  value?: string;
+  href?: string;
+}
+
+const { value, href } = Astro.props;
+---
+
+{
+  value &&
+    (href ? (
+      <li>
+        <a class="contact-row" href={href}>
+          <span class="icon-badge" aria-hidden="true">
+            <slot />
+          </span>
+          {value}
+        </a>
+      </li>
+    ) : (
+      <li class="contact-row">
+        <span class="icon-badge" aria-hidden="true">
+          <slot />
+        </span>
+        {value}
+      </li>
+    ))
+}
