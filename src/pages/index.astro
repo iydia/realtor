@@ -44,6 +44,18 @@ const pageTitle = `${config.firstName} ${config.lastName} — ${config.officeNam
           </div>
         </div>
 
+        {
+          (config.industryAwardsText || config.industryAwardsTextAlt) && (
+            <section class="industry-awards" aria-labelledby="awards-heading">
+              <h2 id="awards-heading" class="awards-heading">Awards &amp; recognition</h2>
+              {config.industryAwardsText && <p class="industry-awards-primary">{config.industryAwardsText}</p>}
+              {config.industryAwardsTextAlt && (
+                <p class="industry-awards-alt" lang="zh-Hans">{config.industryAwardsTextAlt}</p>
+              )}
+            </section>
+          )
+        }
+
         <ul class="contact-list">
           <ContactRow value={config.phone} href={telHref(config.phone)}>
             <svg
@@ -123,19 +135,11 @@ const pageTitle = `${config.firstName} ${config.lastName} — ${config.officeNam
       </div>
 
       {
-        (config.industryLicenseText || config.industrySinceYear || config.industryAwardsText || config.industryAwardsTextAlt) && (
+        (config.industryLicenseText || config.industrySinceYear) && (
           <div class="footer-bar">
             {config.industryLicenseText && <span>{config.industryLicenseText}</span>}
             {config.industrySinceYear && (
               <span>Serving {config.cityProvinceCountry} since {config.industrySinceYear}</span>
-            )}
-            {(config.industryAwardsText || config.industryAwardsTextAlt) && (
-              <div class="industry-awards">
-                {config.industryAwardsText && <span>{config.industryAwardsText}</span>}
-                {config.industryAwardsTextAlt && (
-                  <span class="industry-awards-alt" lang="zh-Hans">{config.industryAwardsTextAlt}</span>
-                )}
-              </div>
             )}
           </div>
         )

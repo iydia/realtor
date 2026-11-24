@@ -36,6 +36,6 @@ export const config = {
   officeLogoSrc: manifest.officeLogo,
   industrySinceYear: env('INDUSTRY_SINCE_YEAR', '2015'),
   industryLicenseText: env('INDUSTRY_LICENSE_TEXT', 'Licensed real estate professional'),
-  industryAwardsText: env('INDUSTRY_AWARDS_TEXT', 'Awards Text'),
+  industryAwardsText: env('INDUSTRY_AWARDS_TEXT'),
   industryAwardsTextAlt: env('INDUSTRY_AWARDS_TEXT_ALT'),
 };

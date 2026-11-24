@@ -117,9 +117,9 @@ a:hover {
 
 .identity-names {
   display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   min-width: 0;
 }
 
@@ -238,17 +238,38 @@ a.contact-row:focus-visible {
 }
 
 .industry-awards {
-  flex-basis: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--color-rule);
+  border-radius: 12px;
+  background: var(--color-footer-bg);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   min-width: 0;
+  font-size: 14px;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
 
+.awards-heading {
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.industry-awards-primary {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
 .industry-awards-alt {
+  margin: 0;
   font-family: "Noto Serif SC", serif;
+  color: var(--color-alt-name);
 }
 
 @media (max-width: 480px) {
